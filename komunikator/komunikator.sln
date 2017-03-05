@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "komunikator", "komunikator\komunikator.csproj", "{A4CAD38E-5210-4B68-83A4-3D896BCD4E51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCPSyncSerwer", "..\..\..\..\Documents\Visual Studio 2015\Projects\KlientSerwerTCPAsync\TCPSyncSerwer\TCPSyncSerwer.csproj", "{C3969AF0-A7F0-4987-B8F6-D4943960916D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A4CAD38E-5210-4B68-83A4-3D896BCD4E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4CAD38E-5210-4B68-83A4-3D896BCD4E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4CAD38E-5210-4B68-83A4-3D896BCD4E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3969AF0-A7F0-4987-B8F6-D4943960916D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3969AF0-A7F0-4987-B8F6-D4943960916D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3969AF0-A7F0-4987-B8F6-D4943960916D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3969AF0-A7F0-4987-B8F6-D4943960916D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
