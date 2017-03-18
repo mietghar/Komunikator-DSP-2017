@@ -8,11 +8,22 @@
         Title="Komunikator mietech.pl" Height="300" Width="359" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="80*"/>
             <RowDefinition Height="80*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btClientRun" Content="KLIENT" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Grid.Row="0" Click="btClientRun_Click"/>
-        <Button x:Name="btnServerRun" Content="SERWER" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Grid.Row="1" Click="btnServerRun_Click"/>
-
+        <Button x:Name="btClientRun" Content="Client" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Grid.Row="1" Click="btClientRun_Click"/>
+        <Button x:Name="btnServerRun" Content="Server" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Grid.Row="2" Click="btnServerRun_Click"/>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_File" >
+                <MenuItem x:Name="ExitFromMenuFile" Header="_Exit" Click="ExitFromMenuFile_Click">
+                    <MenuItem.Icon>
+                        <Image Source="Images/ic_close_black_16dp_1x.png" Visibility="Visible"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="SettingsMenu" Header="_Settings" Click="SettingsMenu_Click"/>
+            <MenuItem x:Name="AboutMenu" Header="_About" Click="AboutMenu_Click"/>
+        </Menu>
     </Grid>
 </Window>

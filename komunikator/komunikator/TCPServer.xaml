@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:komunikator"
         mc:Ignorable="d"
-        Title="Serwer TCP" Height="147" Width="524">
+        Title="Serwer TCP" Height="147" Width="524"
+        Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35*"/>

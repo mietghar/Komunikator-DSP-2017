@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using komunikator.Models;
+using System.Net;
 
 namespace komunikator
 {
@@ -23,7 +25,10 @@ namespace komunikator
         public StartUpWindow()
         {
             InitializeComponent();
+            CheckServerButton(server);
         }
+        private int serverCounter = 0;
+        IServer server;
 
         private void btClientRun_Click(object sender, RoutedEventArgs e)
         {
@@ -34,11 +39,44 @@ namespace komunikator
                 System.Windows.Threading.Dispatcher.Run();
             });
             klient.SetApartmentState(ApartmentState.STA);
+            //przeniesienie wątku do tła, dzięki temu przy zamykaniu aplikacji zostanie on automatycznie zamknięty
+            klient.IsBackground = true;
             klient.Start();
+        }
+
+        private void CheckServerButton(IServer server)
+        {
+            Color green = (Color)ColorConverter.ConvertFromString("#FF33D123");
+            Color red = (Color)ColorConverter.ConvertFromString("#FFFF3A3A");
+
+            if (this.server.IsStarted)
+            {
+                btnServerRun.Background = new SolidColorBrush(green);
+            }
+            else
+            {
+                btnServerRun.Background = new SolidColorBrush(red);
+            }
         }
 
         private void btnServerRun_Click(object sender, RoutedEventArgs e)
         {
+            serverCounter++;
+            try {
+                if (serverCounter % 2 != 0)
+                {
+                    server = new Server((int)Properties.Settings.Default["ServerPortSetting"], IPAddress.Parse((string)Properties.Settings.Default["ServerIPSetting"]));
+                    server.Start();
+                    server.ProcessConnection();
+                }
+                else server.Stop();
+                CheckServerButton(server);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Coś poszło nie tak.");
+            }
+            /*
             Thread serwer = new Thread(delegate ()
             {
                 TCPServer Serwer = new TCPServer();
@@ -46,7 +84,32 @@ namespace komunikator
                 System.Windows.Threading.Dispatcher.Run();
             });
             serwer.SetApartmentState(ApartmentState.STA);
+            //przeniesienie wątku do tła, dzięki temu przy zamykaniu aplikacji zostanie on automatycznie zamknięty
+            serwer.IsBackground = true;
             serwer.Start();
+            */
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExitFromMenuFile_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void AboutMenu_Click(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void SettingsMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainSettingsMenu about = new MainSettingsMenu();
+            about.ShowDialog();
         }
     }
 }

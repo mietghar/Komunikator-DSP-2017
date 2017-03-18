@@ -6,7 +6,8 @@
         xmlns:viewmodel="clr-namespace:komunikator.ViewModels"
         xmlns:local="clr-namespace:komunikator"
         mc:Ignorable="d"
-        Title="Komunikator" Height="350" Width="525">
+        Title="Komunikator" Height="350" Width="525"
+        Closed="Window_Closed">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
@@ -20,16 +21,16 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="26*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="myAddressLabel" Content="Mój adres IP:" Height="26" Width="80" Margin="10,0"/>
-        <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="myPartnerAddressLabel" Content="Adres IP serwera:" Width="104" Height="26" Margin="6,0,5,0"/>
         <TextBox x:Name="MyIPAddress" IsEnabled="False" Grid.Row="0" Grid.Column="1" 
                  HorizontalAlignment="Center" Height="26" TextWrapping="NoWrap" 
                  Text="{Binding MyIPAddress}" 
-                 VerticalAlignment="Top" MaxLines="1" Width="90"/>
-        <TextBox x:Name="myPartnerAddressTextBox" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Height="26" TextWrapping="NoWrap" Text="255.255.255.255" VerticalAlignment="Top" MaxLines="1" Width="90"/>
-        <Button x:Name="connectButton" Grid.Row="0" Grid.Column="4" Content="Połącz" Click="connectButton_Click"/>
-        <ListBox x:Name="EventsListBox" Grid.Column="0" HorizontalAlignment="Center" Height="50" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="500"/>
+                 VerticalAlignment="Top" MaxLines="1" Width="90" Margin="5,0"/>
+        <ListBox x:Name="EventsListBox" Grid.Column="0" HorizontalAlignment="Center" Height="127" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="500" Margin="8,0,9,0"/>
+        <Button x:Name="sendMessageButton" Content="Wyślij" Grid.Column="4" Grid.Row="2" VerticalAlignment="Top" Click="sendMessageButton_Click" Margin="0,10,0,0"/>
+        <TextBox x:Name="messageTextBox" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="395"/>
     </Grid>
 </Window>

@@ -1,0 +1,30 @@
+﻿<Window x:Class="komunikator.MainSettingsMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:komunikator"
+        mc:Ignorable="d"
+        Title="Settings" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="110*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="179*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="ServerIPLabel" Content="Host IP:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="42,2" Height="26" Width="51"/>
+        <TextBox x:Name="ServerIPTextBox" Grid.Column="1" HorizontalAlignment="Center" Margin="46,6,45,6" TextWrapping="NoWrap" Text="192.168.0.1" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
+        <Label x:Name="ServerPortLabel" Grid.Row="1" Content="Host Port:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36,2,37,2"/>
+        <TextBox x:Name="ServerPortTextBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="45,6,46,6" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
+        <Label x:Name="ClientPortLabel" Grid.Row="2" Content="Client Port:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="34,2,33,2"/>
+        <TextBox x:Name="ClientPortTextBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="45,6,46,6" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
+        <Button x:Name="SaveSettingsButton" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,10" VerticalAlignment="Bottom" Click="SaveSettingsButton_Click">Save</Button>
+        <Button x:Name="LoadFactoryDefaultSettings" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" Click="LoadFactoryDefaultSettings_Click">Load factory set</Button>
+    </Grid>
+</Window>
