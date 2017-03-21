@@ -25,7 +25,8 @@ namespace komunikator
         public StartUpWindow()
         {
             InitializeComponent();
-            CheckServerButton(server);
+            Color red = (Color)ColorConverter.ConvertFromString("#FFFF3A3A");
+            btnServerRun.Background = new SolidColorBrush(red);
         }
         private int serverCounter = 0;
         IServer server;
