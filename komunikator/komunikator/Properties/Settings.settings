@@ -11,5 +11,8 @@
     <Setting Name="ClientPortSetting" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">13000</Value>
     </Setting>
+    <Setting Name="HostIPSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

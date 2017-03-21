@@ -30,6 +30,7 @@ namespace komunikator
         {
             //rewrite of default settings to window fields
             ServerIPTextBox.Text = Properties.Settings.Default["ServerIPSetting"].ToString();
+            HostIPTextBox.Text = Properties.Settings.Default["HostIPSetting"].ToString();
             ServerPortTextBox.Text = Properties.Settings.Default["ServerPortSetting"].ToString();
             ClientPortTextBox.Text = Properties.Settings.Default["ClientPortSetting"].ToString();
         }
@@ -38,6 +39,7 @@ namespace komunikator
         {
             try
             {
+                //ServerIPSetting
                 IPAddress address = null;
                 int port = 0;
                 if (IPAddress.TryParse(ServerIPTextBox.Text, out address))
@@ -49,6 +51,8 @@ namespace komunikator
                 {
                     throw new Exception("Can't save. Server IP address is wrong.");
                 }
+
+                //ServerPortSetting
                 if (Int32.TryParse(ServerPortTextBox.Text, out port)==true && Int32.Parse(ServerPortTextBox.Text)>=0 && Int32.Parse(ServerPortTextBox.Text)<= 65535)
                 {
                     Properties.Settings.Default["ServerPortSetting"] = Int32.Parse(ServerPortTextBox.Text);
@@ -58,6 +62,7 @@ namespace komunikator
                 {
                     throw new Exception("Can't save. Server port is wrong.");
                 }
+                //ClientPortSetting
                 if (Int32.TryParse(ClientPortTextBox.Text, out port) == true && Int32.Parse(ClientPortTextBox.Text) >= 0 && Int32.Parse(ClientPortTextBox.Text) <= 65535)
                 {
                     Properties.Settings.Default["ClientPortSetting"] = Int32.Parse(ServerPortTextBox.Text);
@@ -66,6 +71,17 @@ namespace komunikator
                 else
                 {
                     throw new Exception("Can't save. Client port is wrong.");
+                }
+
+                //HostIPSetting
+                if (IPAddress.TryParse(HostIPTextBox.Text, out address))
+                {
+                    Properties.Settings.Default["HostIPSetting"] = HostIPTextBox.Text;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    throw new Exception("Can't save. Host IP address is wrong.");
                 }
             }
             catch(Exception ex)
@@ -116,6 +132,7 @@ namespace komunikator
                     LoadFactorySetting("ServerPortSetting", 13000);
                     LoadFactorySetting("ClientPortSetting", 13000);
                     LoadFactorySetting("ServerIPSetting", "127.0.0.1");
+                    LoadFactorySetting("HostIPSetting", "127.0.0.1");
                     //fullfill all fields again
                     LoadDefaultSettings();
                 }
