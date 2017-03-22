@@ -44,7 +44,7 @@ namespace komunikator.Models
         public void SendMessage(string message)
         {
             // Translate the passed message into ASCII and store it as a Byte array.
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+            Byte[] data = System.Text.Encoding.Unicode.GetBytes(message);
 
             // Get a client stream for reading and writing.
             //  Stream stream = client.GetStream();

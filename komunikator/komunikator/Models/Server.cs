@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -124,15 +125,24 @@ namespace komunikator.Models
                         data = null;
                         // Get a stream object for reading and writing
                         NetworkStream stream = client.GetStream();
-
                         int i;
 
                         // Loop to receive all the data sent by the client.
                         while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                         {
                             // Translate data bytes to a ASCII string.
-                            data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                            /*for (int j = 0; j < bytes.Length; j++)
+                            {
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\TestFolder\Logger.txt", true))
+                                {
+                                    file.WriteLine(bytes[j]);
+                                }
+                            }*/
+                            
+                            data = System.Text.Encoding.Unicode.GetString(bytes, 0, i);
                             //MessageBox.Show("Received: {0}", data);
+                            MessageBox.Show(data);
+                            Logger(data);
 
                             /*// Process the data sent by the client.
                             data = data.ToUpper();
@@ -167,6 +177,24 @@ namespace komunikator.Models
             //przeniesienie wątku do tła, dzięki temu przy zamykaniu aplikacji zostanie on automatycznie zamknięty
             listener.IsBackground = true;
             listener.Start();
+        }
+
+        public void Logger(string data)
+        {
+            string path = @"c:\Users\Public\Logger.txt";
+
+            // This text is added only once to the file.
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                string createText = DateTime.Now + Environment.NewLine;
+                File.WriteAllText(path, createText, Encoding.Unicode);
+            }
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            string appendText = data + Environment.NewLine;
+            File.AppendAllText(path, appendText, Encoding.Unicode);
         }
 
         public void Stop()
