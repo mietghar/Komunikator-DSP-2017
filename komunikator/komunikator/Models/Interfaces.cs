@@ -24,6 +24,7 @@ namespace komunikator.Models
         IPAddress IpAddress { get; set; }
 
         void Connect(int port, IPAddress ipAddress);
+        void SendMessage(string message);
         void Disconnect();
     }
 }

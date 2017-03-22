@@ -29,7 +29,7 @@
                  HorizontalAlignment="Center" Height="26" TextWrapping="NoWrap" 
                  Text="{Binding MyIPAddress}" 
                  VerticalAlignment="Top" MaxLines="1" Width="90" Margin="5,0"/>
-        <ListBox x:Name="EventsListBox" Grid.Column="0" HorizontalAlignment="Center" Height="127" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="500" Margin="8,0,9,0"/>
+        <TextBox x:Name="TalkTextBox" Grid.Column="0" HorizontalAlignment="Center" Height="127" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="500" Margin="8,0,9,0"/>
         <Button x:Name="sendMessageButton" Content="Wyślij" Grid.Column="4" Grid.Row="2" VerticalAlignment="Top" Click="sendMessageButton_Click" Margin="0,10,0,0"/>
         <TextBox x:Name="messageTextBox" Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="395"/>
     </Grid>

@@ -77,14 +77,17 @@ namespace komunikator
 
         private void sendMessageButton_Click(object sender, RoutedEventArgs e)
         {
+            string message = messageTextBox.Text;
             int port = 0;
             port = (int)Properties.Settings.Default["ClientPortSetting"];
             string host = "";
-            host = (string)Properties.Settings.Default["ServerIPSetting"];
+            host = (string)Properties.Settings.Default["HostIPSetting"];
             try { 
             client = new Client();
             
                 client.Connect(port, IPAddress.Parse(host));
+                client.SendMessage(message);
+                TalkTextBox.Text = TalkTextBox.Text + "\nMe: " + message;
                 client.Disconnect();
             }
             catch(TimeoutException toex)

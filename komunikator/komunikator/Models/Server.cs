@@ -39,6 +39,7 @@ namespace komunikator.Models
 
         public bool ValidateServer(int port, IPAddress ipAddress)
         {
+
             //Checking if current port is already in use
             IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
             TcpConnectionInformation[] tcpConnInfoArray = ipGlobalProperties.GetActiveTcpConnections();
@@ -76,6 +77,7 @@ namespace komunikator.Models
             if (ValidateServer(Port, IpAddress))
             {
                 server.Start();
+                    MessageBox.Show("Server started.");
                 HasStarted();
             }
             else
@@ -115,11 +117,10 @@ namespace komunikator.Models
 
                     while (IsStarted)
                     {
-                        MessageBox.Show("Waiting for a connection.");
                         //Performing await for a connection
                         TcpClient client = server.AcceptTcpClient();
                         ClientIP = (IPEndPoint)client.Client.RemoteEndPoint;
-                        MessageBox.Show("Connected from IP: " + ClientIP.ToString() + " .");
+                        //MessageBox.Show("Connected from IP: " + ClientIP.ToString() + " .");
                         data = null;
                         // Get a stream object for reading and writing
                         NetworkStream stream = client.GetStream();
@@ -131,7 +132,7 @@ namespace komunikator.Models
                         {
                             // Translate data bytes to a ASCII string.
                             data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                            MessageBox.Show("Received: {0}", data);
+                            //MessageBox.Show("Received: {0}", data);
 
                             /*// Process the data sent by the client.
                             data = data.ToUpper();
