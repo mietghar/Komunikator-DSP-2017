@@ -181,7 +181,7 @@ namespace komunikator.Models
 
         public void Logger(string data)
         {
-            string path = @"c:\Users\Public\Logger.txt";
+            string path = Properties.Settings.Default["ServerLoggerPathSetting"].ToString();
 
             // This text is added only once to the file.
             if (!File.Exists(path))

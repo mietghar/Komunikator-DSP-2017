@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -33,6 +34,7 @@ namespace komunikator
             HostIPTextBox.Text = Properties.Settings.Default["HostIPSetting"].ToString();
             ServerPortTextBox.Text = Properties.Settings.Default["ServerPortSetting"].ToString();
             ClientPortTextBox.Text = Properties.Settings.Default["ClientPortSetting"].ToString();
+            LoggerPathTextBox.Text = Properties.Settings.Default["ServerLoggerPathSetting"].ToString();
         }
 
         private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
@@ -83,8 +85,14 @@ namespace komunikator
                 {
                     throw new Exception("Can't save. Host IP address is wrong.");
                 }
+                //ServerLoggerPathSetting
+                if (true)
+                {
+                    Properties.Settings.Default["ServerLoggerPathSetting"] = LoggerPathTextBox.Text;
+                    Properties.Settings.Default.Save();
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
@@ -133,6 +141,7 @@ namespace komunikator
                     LoadFactorySetting("ClientPortSetting", 13000);
                     LoadFactorySetting("ServerIPSetting", "127.0.0.1");
                     LoadFactorySetting("HostIPSetting", "127.0.0.1");
+                    LoadFactorySetting("ServerLoggerPathSetting", @"C:\Users\Public\Logger.txt");
                     //fullfill all fields again
                     LoadDefaultSettings();
                 }
@@ -149,6 +158,32 @@ namespace komunikator
             /*ServerIPTextBox.Text = Properties.Settings.Default["ServerIPSetting"].ToString();
             ServerPortTextBox.Text = Properties.Settings.Default["ServerPortSetting"].ToString();
             ClientPortTextBox.Text = Properties.Settings.Default["ClientPortSetting"].ToString();*/
+        }
+
+        private void SetLoggerFilename(string path)
+        {
+            LoggerPathTextBox.Text = path;
+        }
+
+        private void SetLoggerPath_Click(object sender, RoutedEventArgs e)
+        {
+            // Configure open file dialog box
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.InitialDirectory = @"C:\Users\Public";
+            dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName;
+                SetLoggerFilename(filename);
+            }
         }
     }
 }

@@ -5,29 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:komunikator"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="300">
+        Title="Settings" Height="300" Width="600" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="135*"/>
-            <ColumnDefinition Width="110*"/>
-            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="52*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="30*"/>
-            <RowDefinition Height="149*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="119*"/>
         </Grid.RowDefinitions>
         <Label x:Name="ServerIPLabel" Content="My server IP:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="ServerIPTextBox" Grid.Column="1" HorizontalAlignment="Center" Margin="46,6,45,6" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
-        <Label x:Name="ServerPortLabel" Grid.Row="1" Content="My server port:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="ServerPortTextBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="45,6,46,6" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
-        <Label x:Name="ClientPortLabel" Grid.Row="2" Content="My client port:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="ClientPortTextBox" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Margin="45,6,46,6" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
-        <Label x:Name="HostIPLabel" Grid.Row="3" Content="Host IP:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox x:Name="HostIPTextBox" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="66" Grid.ColumnSpan="2"/>
-        <Button x:Name="SaveSettingsButton" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" Margin="9,0,9,10" VerticalAlignment="Bottom" Click="SaveSettingsButton_Click" Height="20" Width="29">Save</Button>
-        <Button x:Name="LoadFactoryDefaultSettings" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="11,0,11,10" Click="LoadFactoryDefaultSettings_Click" Height="20" Width="88">Load factory set</Button>
+        <TextBox x:Name="ServerIPTextBox" Width="100" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18"/>
+        <Label x:Name="ServerPortLabel" Grid.Row="0" Content="My server port:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26" Grid.Column="2"/>
+        <TextBox x:Name="ServerPortTextBox" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="100"/>
+        <Label x:Name="ClientPortLabel" Grid.Row="1" Content="My client port:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26"/>
+        <TextBox x:Name="ClientPortTextBox" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="100"/>
+        <Label x:Name="HostIPLabel" Grid.Row="1" Grid.Column="2" Content="Host IP:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26"/>
+        <TextBox x:Name="HostIPTextBox" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" MaxLength="16" Height="18" Width="100"/>
+        <Label x:Name="LoggerPath" Grid.Row="2" Content="My server logs path:" HorizontalAlignment="Center" VerticalAlignment="Center" Height="26"/>
+        <TextBox x:Name="LoggerPathTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Center" MaxLines="1" Height="18" Width="370"/>
+        <Button x:Name="SaveSettingsButton" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Center" Margin="20,0,4,10" VerticalAlignment="Bottom" Click="SaveSettingsButton_Click" Height="20" Width="28">Save</Button>
+        <Button x:Name="LoadFactoryDefaultSettings" Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Click="LoadFactoryDefaultSettings_Click" Height="20" Width="88">Load factory set</Button>
+        <Button x:Name="SetLoggerPath" Content="Set" Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="36" Click="SetLoggerPath_Click" Height="20"/>
+
     </Grid>
 </Window>
