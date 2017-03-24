@@ -17,5 +17,17 @@
     <Setting Name="ServerLoggerPathSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\Public\Logger.txt</Value>
     </Setting>
+    <Setting Name="UserIdSetting" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FirstRunSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UserEmailSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="UserNameSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
