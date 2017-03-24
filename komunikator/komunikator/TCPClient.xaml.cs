@@ -77,20 +77,27 @@ namespace komunikator
 
         private void sendMessageButton_Click(object sender, RoutedEventArgs e)
         {
+            SendMessage();
+        }
+
+        private void SendMessage()
+        {
             string message = messageTextBox.Text;
             int port = 0;
             port = (int)Properties.Settings.Default["ClientPortSetting"];
             string host = "";
             host = (string)Properties.Settings.Default["HostIPSetting"];
-            try { 
-            client = new Client();
-            
+            try
+            {
+                client = new Client();
+
                 client.Connect(port, IPAddress.Parse(host));
                 client.SendMessage(message);
                 TalkTextBox.Text = TalkTextBox.Text + "\nMe: " + message;
+                messageTextBox.Text = "";
                 client.Disconnect();
             }
-            catch(TimeoutException toex)
+            catch (TimeoutException toex)
             {
                 MessageBox.Show(toex.Message.ToString());
             }
@@ -139,6 +146,14 @@ namespace komunikator
             {
                 MessageBox.Show("Coś poszło nie tak przy streamowaniu.");
             }*/
+        }
+
+        private void messageTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SendMessage();
+            }
         }
     }
 }
