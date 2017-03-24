@@ -85,18 +85,6 @@ namespace komunikator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int UserIdSetting {
-            get {
-                return ((int)(this["UserIdSetting"]));
-            }
-            set {
-                this["UserIdSetting"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool FirstRunSetting {
             get {
@@ -110,24 +98,24 @@ namespace komunikator.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string UserEmailSetting {
-            get {
-                return ((string)(this["UserEmailSetting"]));
-            }
-            set {
-                this["UserEmailSetting"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string UserNameSetting {
             get {
                 return ((string)(this["UserNameSetting"]));
             }
             set {
                 this["UserNameSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserPasswordSetting {
+            get {
+                return ((string)(this["UserPasswordSetting"]));
+            }
+            set {
+                this["UserPasswordSetting"] = value;
             }
         }
     }

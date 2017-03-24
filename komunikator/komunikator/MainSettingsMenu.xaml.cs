@@ -35,6 +35,8 @@ namespace komunikator
             ServerPortTextBox.Text = Properties.Settings.Default["ServerPortSetting"].ToString();
             ClientPortTextBox.Text = Properties.Settings.Default["ClientPortSetting"].ToString();
             LoggerPathTextBox.Text = Properties.Settings.Default["ServerLoggerPathSetting"].ToString();
+            UserNameTextBox.Text = Properties.Settings.Default["UserNameSetting"].ToString();
+            UserPasswordPasswordBox.Password = Properties.Settings.Default["UserPasswordSetting"].ToString();
         }
 
         private void SaveSettingsButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +93,22 @@ namespace komunikator
                     Properties.Settings.Default["ServerLoggerPathSetting"] = LoggerPathTextBox.Text;
                     Properties.Settings.Default.Save();
                 }
+                //UserNameSetting
+                if (true)
+                {
+                    Properties.Settings.Default["UserNameSetting"] = UserNameTextBox.Text;
+                    Properties.Settings.Default.Save();
+                }
+                //UserPasswordSetting
+                if (UserPasswordPasswordBox.Password.Length>=6)
+                {
+                    Properties.Settings.Default["UserPasswordSetting"] = UserPasswordPasswordBox.Password;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    throw new Exception("Can't save. Password must be at least 6 characters long.");
+                }
             }
             catch (Exception ex)
             {
@@ -142,6 +160,8 @@ namespace komunikator
                     LoadFactorySetting("ServerIPSetting", "127.0.0.1");
                     LoadFactorySetting("HostIPSetting", "127.0.0.1");
                     LoadFactorySetting("ServerLoggerPathSetting", @"C:\Users\Public\Logger.txt");
+                    LoadFactorySetting("UserNameSetting", "");
+                    LoadFactorySetting("UserPasswordSetting", "");
                     //fullfill all fields again
                     LoadDefaultSettings();
                 }

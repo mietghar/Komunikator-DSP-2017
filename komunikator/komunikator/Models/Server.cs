@@ -160,7 +160,7 @@ namespace komunikator.Models
                 }
                 catch (SocketException sex)
                 {
-                    MessageBox.Show("Server has stopped.");
+                MessageBox.Show("Server has stopped." + sex.Message.ToString());
                 }
                 catch (Exception ex)
                 {
