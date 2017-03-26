@@ -118,5 +118,29 @@ namespace komunikator.Properties {
                 this["UserPasswordSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DataBaseNameSetting {
+            get {
+                return ((string)(this["DataBaseNameSetting"]));
+            }
+            set {
+                this["DataBaseNameSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DataBasePathSetting {
+            get {
+                return ((string)(this["DataBasePathSetting"]));
+            }
+            set {
+                this["DataBasePathSetting"] = value;
+            }
+        }
     }
 }

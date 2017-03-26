@@ -33,11 +33,10 @@ namespace komunikator.Models
         string Name { get; set; }
         string Path { get; set; }
         string Password { get; set; }
-        string DBType { get; set; }
+        string DBType { get; }
 
-        void Create(string path, string name, string type);
+        void Create(string path, string name);
         void Connect(string name, string path, string password);
         void Disconnect();
-
     }
 }

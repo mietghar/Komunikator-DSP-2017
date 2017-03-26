@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using komunikator.Models;
 using System.Net;
+using komunikator.Models.Databases;
 
 namespace komunikator
 {
@@ -77,18 +78,15 @@ namespace komunikator
             {
                 MessageBox.Show("Coś poszło nie tak.");
             }
-            /*
-            Thread serwer = new Thread(delegate ()
+            try
             {
-                TCPServer Serwer = new TCPServer();
-                Serwer.Show();
-                System.Windows.Threading.Dispatcher.Run();
-            });
-            serwer.SetApartmentState(ApartmentState.STA);
-            //przeniesienie wątku do tła, dzięki temu przy zamykaniu aplikacji zostanie on automatycznie zamknięty
-            serwer.IsBackground = true;
-            serwer.Start();
-            */
+                SQLite database = new SQLite();
+                database.Create(@"bazatestowa\", "testbazydanych");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
