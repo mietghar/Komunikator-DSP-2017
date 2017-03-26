@@ -27,4 +27,17 @@ namespace komunikator.Models
         void SendMessage(string message);
         void Disconnect();
     }
+
+    interface IDatabase
+    {
+        string Name { get; set; }
+        string Path { get; set; }
+        string Password { get; set; }
+        string DBType { get; set; }
+
+        void Create(string path, string name, string type);
+        void Connect(string name, string path, string password);
+        void Disconnect();
+
+    }
 }

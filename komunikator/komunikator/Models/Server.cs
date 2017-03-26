@@ -130,28 +130,14 @@ namespace komunikator.Models
                         // Loop to receive all the data sent by the client.
                         while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                         {
-                            // Translate data bytes to a ASCII string.
-                            /*for (int j = 0; j < bytes.Length; j++)
-                            {
-                                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\TestFolder\Logger.txt", true))
-                                {
-                                    file.WriteLine(bytes[j]);
-                                }
-                            }*/
-                            
                             data = System.Text.Encoding.Unicode.GetString(bytes, 0, i);
-                            //MessageBox.Show("Received: {0}", data);
-                            MessageBox.Show(data);
                             Logger(data);
 
-                            /*// Process the data sent by the client.
-                            data = data.ToUpper();
-
-                            byte[] msg = System.Text.Encoding.ASCII.GetBytes(data);
-
-                            // Send back a response.
-                            stream.Write(msg, 0, msg.Length);
-                            Console.WriteLine("Sent: {0}", data);*/
+                            UdpClient udpclient = new UdpClient(Properties.Settings.Default["HostIPSetting"].ToString(), 13000);
+                            byte[] dane = System.Text.Encoding.Unicode.GetBytes("cos tam cos tam");
+                            udpclient.Send(dane, dane.Length);
+                            udpclient.Close();
+                            
                         }
 
 

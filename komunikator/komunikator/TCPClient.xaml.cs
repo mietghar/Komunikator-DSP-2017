@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,6 +28,7 @@ namespace komunikator
         {
             InitializeComponent();
             SetMyIPAddress();
+            ClientListener();
         }
 
         public TcpClient klient = new TcpClient();
@@ -78,6 +80,53 @@ namespace komunikator
         private void sendMessageButton_Click(object sender, RoutedEventArgs e)
         {
             SendMessage();
+        }
+
+        delegate void SetTextCallBack(string tekst);
+        private void SetText(string tekst)
+        {
+            try { 
+            if (!TalkTextBox.CheckAccess())
+            {
+                SetTextCallBack f = new SetTextCallBack(SetText);
+                Dispatcher.Invoke(f, new object[] { tekst });
+            }
+            else
+            {
+                this.TalkTextBox.Text = this.TalkTextBox.Text+"\n"+tekst;
+            }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+
+        private void ClientListener()
+        {
+            Thread clientListener = new Thread(delegate()
+            {
+                try
+                {
+                    Byte[] bytes = new Byte[256];
+                    while (true)
+                    {
+                        IPEndPoint zdalnyIP = new IPEndPoint(IPAddress.Any, 0);
+                        UdpClient serwer = new UdpClient(13000);
+                        Byte[] odczyt = serwer.Receive(ref zdalnyIP);
+                        string dane = System.Text.Encoding.Unicode.GetString(odczyt);
+                        this.SetText(dane);
+                        serwer.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            });
+            clientListener.IsBackground = true;
+            clientListener.Start();
         }
 
         private void SendMessage()
