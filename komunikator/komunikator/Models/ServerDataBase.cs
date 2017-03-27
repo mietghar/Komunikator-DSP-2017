@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Net.Sockets;
 
 namespace komunikator.Models
 {
@@ -49,8 +50,18 @@ namespace komunikator.Models
                 }
                 password = password + dataChar[j];
             }
+            string sentMessage = data.Substring(username.Length + password.Length + 6);
+
+            BroadCast(sentMessage);
             
-            string SentMessage = data.Substring(username.Length + password.Length + 6);
+        }
+
+        public void BroadCast(string data)
+        {
+            UdpClient udpclient = new UdpClient(Properties.Settings.Default["HostIPSetting"].ToString(), System.Convert.ToInt32(Properties.Settings.Default["ServerPortSetting"].ToString()));
+            byte[] dane = System.Text.Encoding.Unicode.GetBytes(data);
+            udpclient.Send(dane, dane.Length);
+            udpclient.Close();
         }
 
         public void SendMessage(string username, string password, string message)

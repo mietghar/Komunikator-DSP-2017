@@ -140,10 +140,6 @@ namespace komunikator.Models
                             //sprawdzenie klienta - czy istnieje w bazie danych
                             //sprawdzenie poprawnosci logowania
                             //zapisanie wiadomosci w bazie
-                            UdpClient udpclient = new UdpClient(Properties.Settings.Default["HostIPSetting"].ToString(), 13000);
-                            byte[] dane = System.Text.Encoding.Unicode.GetBytes("cos tam cos tam");
-                            udpclient.Send(dane, dane.Length);
-                            udpclient.Close();
                             
                         }
 

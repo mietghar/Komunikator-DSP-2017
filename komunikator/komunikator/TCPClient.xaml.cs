@@ -32,6 +32,7 @@ namespace komunikator
         }
 
         public TcpClient klient = new TcpClient();
+        UdpClient serwer;
 
         IPAddress adresIPHost;
         IPAddress adresIPClient;
@@ -59,22 +60,16 @@ namespace komunikator
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            try
-            {
                 if (klient.Connected)
                 {
-                    //klient.Client.Disconnect(true);
+                    serwer.Close();
                     klient.Close();
                 }
                 else
                 {
+                    serwer.Close();
                     klient.Close();
                 }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Błąd, próba zamknięcia połączenia z serwerem nieudana. " +ex.ToString());
-            }
         }
 
         private void sendMessageButton_Click(object sender, RoutedEventArgs e)
@@ -98,7 +93,7 @@ namespace komunikator
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                //MessageBox.Show(ex.Message.ToString());
             }
         }
 
@@ -113,11 +108,22 @@ namespace komunikator
                     while (true)
                     {
                         IPEndPoint zdalnyIP = new IPEndPoint(IPAddress.Any, 0);
-                        UdpClient serwer = new UdpClient(13000);
+                        serwer = new UdpClient(System.Convert.ToInt32(Properties.Settings.Default["ClientPortSetting"]));
                         Byte[] odczyt = serwer.Receive(ref zdalnyIP);
                         string dane = System.Text.Encoding.Unicode.GetString(odczyt);
-                        this.SetText(dane);
+                        this.SetText("\t\t\t\t\t\tSerwer: "+dane);
                         serwer.Close();
+                    }
+                }
+                catch(SocketException sex)
+                {
+                    if (sex.ErrorCode == 10004)
+                    {
+                        //Operacja blokująca została przerwana przez wywołanie funkcji WSACancelBlockingCall. - DO NOTHING
+                    }
+                    else
+                    {
+                        MessageBox.Show(sex.Message.ToString());
                     }
                 }
                 catch(Exception ex)
