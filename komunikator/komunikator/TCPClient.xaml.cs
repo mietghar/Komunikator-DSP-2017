@@ -131,6 +131,9 @@ namespace komunikator
 
         private void SendMessage()
         {
+            string username = Properties.Settings.Default["UserNameSetting"].ToString();
+            string password = Properties.Settings.Default["UserPasswordSetting"].ToString();
+            string usermessage = username +";+;"+ password + ";+;" + messageTextBox.Text;
             string message = messageTextBox.Text;
             int port = 0;
             port = (int)Properties.Settings.Default["ClientPortSetting"];
@@ -141,7 +144,7 @@ namespace komunikator
                 client = new Client();
 
                 client.Connect(port, IPAddress.Parse(host));
-                client.SendMessage(message);
+                client.SendMessage(usermessage);
                 TalkTextBox.Text = TalkTextBox.Text + "\nMe: " + message;
                 messageTextBox.Text = "";
                 client.Disconnect();

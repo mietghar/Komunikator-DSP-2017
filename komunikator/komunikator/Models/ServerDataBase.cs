@@ -27,6 +27,37 @@ namespace komunikator.Models
             
         }
 
+        public void ProcessMessage(string data)
+        {
+            char[] dataChar = data.ToCharArray();
+            //message decoding
+            string username = "";
+            string password = "";
+            for (int j = 0; j < data.Length; j++)
+            {
+                if (dataChar[j] == ';' && dataChar[j + 1] == '+' && dataChar[j + 2] == ';')
+                {
+                    break;
+                }
+                username = username + dataChar[j];
+            }
+            for (int j = (username.Length + 3); j < data.Length; j++)
+            {
+                if (dataChar[j] == ';' && dataChar[j + 1] == '+' && dataChar[j + 2] == ';')
+                {
+                    break;
+                }
+                password = password + dataChar[j];
+            }
+            
+            string SentMessage = data.Substring(username.Length + password.Length + 6);
+        }
+
+        public void SendMessage(string username, string password, string message)
+        {
+
+        }
+
         public int GetClientID(string username, string password)
         {
             int id = 0;
