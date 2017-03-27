@@ -121,7 +121,7 @@ namespace komunikator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ServerDataBase")]
         public string DataBaseNameSetting {
             get {
                 return ((string)(this["DataBaseNameSetting"]));
@@ -133,13 +133,25 @@ namespace komunikator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data\\")]
         public string DataBasePathSetting {
             get {
                 return ((string)(this["DataBasePathSetting"]));
             }
             set {
                 this["DataBasePathSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("password")]
+        public string DataBasePassword {
+            get {
+                return ((string)(this["DataBasePassword"]));
+            }
+            set {
+                this["DataBasePassword"] = value;
             }
         }
     }

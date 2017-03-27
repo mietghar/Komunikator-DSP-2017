@@ -13,7 +13,7 @@ namespace komunikator.Models
         public abstract string Password { get; set; }
         public abstract string Path { get; set; }
 
-        public abstract void Connect(string name, string path, string password);
+        public abstract void Connect();
         public abstract void Create(string path, string name);
         public abstract void Create();
         public abstract void Disconnect();

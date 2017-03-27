@@ -27,10 +27,13 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DataBaseNameSetting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">ServerDataBase</Value>
     </Setting>
     <Setting Name="DataBasePathSetting" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Data\</Value>
+    </Setting>
+    <Setting Name="DataBasePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">password</Value>
     </Setting>
   </Settings>
 </SettingsFile>

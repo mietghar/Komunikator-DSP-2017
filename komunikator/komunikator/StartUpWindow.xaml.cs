@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using komunikator.Models;
 using System.Net;
 using komunikator.Models.Databases;
+using System.Data.SQLite;
 
 namespace komunikator
 {
@@ -81,7 +82,22 @@ namespace komunikator
             try
             {
                 SQLite database = new SQLite();
-                database.Create(@"bazatestowa\", "testbazydanych");
+                database.Create(@"Data\", "ServerDataBase");
+                
+                database.Password = "password";
+                database.Connect();
+                string query = "CREATE TABLE highscores(name VARCHAR(20), score INT)";
+                database.ExecuteNonQuery(query);
+                query = "insert into highscores (name, score) values ('Me', 3000)";
+                database.ExecuteNonQuery(query);
+                query = "insert into highscores (name, score) values ('Myself', 6000)";
+                database.ExecuteNonQuery(query);
+                query = "insert into highscores (name, score) values ('And I', 9001)";
+                database.ExecuteNonQuery(query);
+                query = "select * from highscores order by score desc";
+                SQLiteDataReader reader = database.ExecuteReader(query);
+                reader.Read();
+                database.Disconnect();
             }
             catch(Exception ex)
             {

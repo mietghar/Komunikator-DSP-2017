@@ -5,59 +5,58 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Data;
 
 namespace komunikator.Models.Databases
 {
     class SQLite : Database
     {
         #region Properties
+
         public override string DBType
         {
             get
             {
-                return "SQLite";
+                return dbType;
             }
         }
-
         public override string Name
         {
             get
             {
-                throw new NotImplementedException();
+                return name;
             }
 
             set
             {
-                throw new NotImplementedException();
+                name = value;
             }
         }
-
         public override string Password
         {
             get
             {
-                throw new NotImplementedException();
+                return password;
             }
 
             set
             {
-                throw new NotImplementedException();
+                password = value;
             }
         }
-
         public override string Path
         {
             get
             {
-                throw new NotImplementedException();
+                return path;
             }
 
             set
             {
-                throw new NotImplementedException();
+                path = value;
             }
         }
-
         public bool Exists
         {
             get
@@ -68,15 +67,20 @@ namespace komunikator.Models.Databases
 
         #endregion
 
+        #region Fields
+        private string dbType = "SQLite";
+        private string name = "";
+        private string password = "";
+        private string path = "";
+        private SQLiteConnection m_dbConnection;
+        #endregion
+
         #region Methods
 
         public override void Create(string path, string name)
         {
             CreateSQLite(path, name);
         }
-
-
-
         public override void Create()
         {
             if(Name==null || Name == "")
@@ -89,9 +93,10 @@ namespace komunikator.Models.Databases
             }
             CreateSQLite(Path, Name);
         }
-        
         private void CreateSQLite(string path, string name)
         {
+            Path = path;
+            Name = name;
             if (Directory.Exists(path))
             {
                 //checking if our database exists under specified name and path
@@ -112,17 +117,36 @@ namespace komunikator.Models.Databases
         }
 
 
-
-        public override void Connect(string name, string path, string password)
+        public override void Connect()
         {
-            throw new NotImplementedException();
+            if(Password=="" || Password == null)
+            {
+                m_dbConnection = new SQLiteConnection("Data Source=" + Path + Name+".sqlite;Version=3;");
+                m_dbConnection.Open();
+            }
+            else
+            {
+                m_dbConnection = new SQLiteConnection("Data Source="+Path+Name+".sqlite;Version=3;Password="+Password+";");
+                m_dbConnection.Open();
+            }
         }
 
-       
+        public void ExecuteNonQuery(string query)
+        {
+            SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        public SQLiteDataReader ExecuteReader(string query)
+        {
+            SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            return reader;
+        }
 
         public override void Disconnect()
         {
-            throw new NotImplementedException();
+            m_dbConnection.Close();
         }
 
         #endregion
