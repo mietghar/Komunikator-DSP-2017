@@ -81,8 +81,14 @@ namespace komunikator
             }
             try
             {
-                SQLite database = new SQLite();
-                database.Create(@"Data\", "ServerDataBase");
+                ServerDataBase database = new ServerDataBase();
+                database.DBPath = Properties.Settings.Default["DataBasePathSetting"].ToString();
+                database.Name = Properties.Settings.Default["DataBaseNameSetting"].ToString();
+                if (!database.Exists)
+                {
+                    database.GenerateServerDataBaseForFirstTime();
+                }
+                /*database.GenerateServerDataBaseForFirstTime();
                 
                 database.Password = "password";
                 database.Connect();
@@ -97,7 +103,7 @@ namespace komunikator
                 query = "select * from highscores order by score desc";
                 SQLiteDataReader reader = database.ExecuteReader(query);
                 reader.Read();
-                database.Disconnect();
+                database.Disconnect();*/
             }
             catch(Exception ex)
             {

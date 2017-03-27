@@ -146,12 +146,12 @@ namespace komunikator.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("password")]
-        public string DataBasePassword {
+        public string DataBasePasswordSetting {
             get {
-                return ((string)(this["DataBasePassword"]));
+                return ((string)(this["DataBasePasswordSetting"]));
             }
             set {
-                this["DataBasePassword"] = value;
+                this["DataBasePasswordSetting"] = value;
             }
         }
     }

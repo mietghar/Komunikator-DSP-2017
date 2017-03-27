@@ -11,7 +11,7 @@ namespace komunikator.Models
         public abstract string DBType { get; }
         public abstract string Name { get; set; }
         public abstract string Password { get; set; }
-        public abstract string Path { get; set; }
+        public abstract string DBPath { get; set; }
 
         public abstract void Connect();
         public abstract void Create(string path, string name);

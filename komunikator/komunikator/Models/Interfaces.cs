@@ -31,7 +31,7 @@ namespace komunikator.Models
     interface IDatabase
     {
         string Name { get; set; }
-        string Path { get; set; }
+        string DBPath { get; set; }
         string Password { get; set; }
         string DBType { get; }
 

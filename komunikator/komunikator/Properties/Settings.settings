@@ -32,7 +32,7 @@
     <Setting Name="DataBasePathSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data\</Value>
     </Setting>
-    <Setting Name="DataBasePassword" Type="System.String" Scope="User">
+    <Setting Name="DataBasePasswordSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">password</Value>
     </Setting>
   </Settings>

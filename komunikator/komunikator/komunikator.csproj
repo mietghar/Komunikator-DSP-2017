@@ -105,6 +105,7 @@
     <Compile Include="Models\Databases\SQLite.cs" />
     <Compile Include="Models\Interfaces.cs" />
     <Compile Include="Models\Server.cs" />
+    <Compile Include="Models\ServerDataBase.cs" />
     <Compile Include="StartUpWindow.xaml.cs">
       <DependentUpon>StartUpWindow.xaml</DependentUpon>
     </Compile>

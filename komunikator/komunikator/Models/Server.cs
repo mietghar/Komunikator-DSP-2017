@@ -131,7 +131,10 @@ namespace komunikator.Models
                         while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                         {
                             data = System.Text.Encoding.Unicode.GetString(bytes, 0, i);
+                            //zapis zdarzenia do pliku logu
                             Logger(data);
+                            ServerDataBase database = new ServerDataBase();
+                            database.Connect();
 
                             UdpClient udpclient = new UdpClient(Properties.Settings.Default["HostIPSetting"].ToString(), 13000);
                             byte[] dane = System.Text.Encoding.Unicode.GetBytes("cos tam cos tam");

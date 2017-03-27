@@ -45,7 +45,7 @@ namespace komunikator.Models.Databases
                 password = value;
             }
         }
-        public override string Path
+        public override string DBPath
         {
             get
             {
@@ -61,7 +61,7 @@ namespace komunikator.Models.Databases
         {
             get
             {
-                return File.Exists(Path+Name+".sqlite");
+                return File.Exists(Path.GetFullPath(DBPath)+Name+".sqlite");
             }
         }
 
@@ -87,15 +87,15 @@ namespace komunikator.Models.Databases
             {
                 throw new Exception("Database is unknown. Give it a name.");
             }
-            if(Path==null || Path == "")
+            if(DBPath==null || DBPath == "")
             {
                 throw new Exception("Database is unknown. Give it a correct path.");
             }
-            CreateSQLite(Path, Name);
+            CreateSQLite(DBPath, Name);
         }
         private void CreateSQLite(string path, string name)
         {
-            Path = path;
+            DBPath = path;
             Name = name;
             if (Directory.Exists(path))
             {
@@ -111,7 +111,8 @@ namespace komunikator.Models.Databases
             }
             else
             {
-                File.Create(path);
+                //File.Create(path);
+                Directory.CreateDirectory(path);
                 SQLiteConnection.CreateFile(path + name + @".sqlite");
             }
         }
@@ -121,12 +122,12 @@ namespace komunikator.Models.Databases
         {
             if(Password=="" || Password == null)
             {
-                m_dbConnection = new SQLiteConnection("Data Source=" + Path + Name+".sqlite;Version=3;");
+                m_dbConnection = new SQLiteConnection("Data Source=" + DBPath + Name+".sqlite;Version=3;");
                 m_dbConnection.Open();
             }
             else
             {
-                m_dbConnection = new SQLiteConnection("Data Source="+Path+Name+".sqlite;Version=3;Password="+Password+";");
+                m_dbConnection = new SQLiteConnection("Data Source="+DBPath+Name+".sqlite;Version=3;Password="+Password+";");
                 m_dbConnection.Open();
             }
         }
